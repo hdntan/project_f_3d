@@ -6,12 +6,20 @@ public class PlayerInputManager : MonoBehaviour
     public static PlayerInputManager instance;
     protected PlayerControls playerControls;
 
+    [Header("Player Movement Input")]
     [SerializeField] private Vector2 movementInput;
 
     public float horizontalInput;
     public float verticalInput;
 
     public float moveAmount;
+
+    [Header("Camera Movement Input")]
+
+    [SerializeField] private Vector2 cameraInput;
+    public float cameraHorizontalInput;
+    public float cameraVerticalInput;
+    
 
 
     private void Awake()
@@ -29,6 +37,20 @@ public class PlayerInputManager : MonoBehaviour
 
     }
 
+        private void OnEnable()
+    {
+        if (this.playerControls == null)
+        {
+            this.playerControls = new PlayerControls();
+            this.playerControls.PlayerMovement.Movement.performed += i => this.movementInput = i.ReadValue<Vector2>();
+            this.playerControls.PlayerCamera.Movement.performed += i => this.cameraInput = i.ReadValue<Vector2>();
+            //this.playerControls.PlayerMovement.Movement.canceled += i => this.movementInput = Vector2.zero;
+        }
+        this.playerControls.Enable();
+    }
+
+ 
+
     private void Start()
     {
         SceneManager.activeSceneChanged += OnSceneChanged;
@@ -37,11 +59,12 @@ public class PlayerInputManager : MonoBehaviour
     }
     private void Update()
     {
-        this.HandleMovementInput();
+        this.HandlePlayerMovementInput();
+        this.HandleCameraMovementInput();
     }
 
 
-    protected virtual void HandleMovementInput()
+    protected virtual void HandlePlayerMovementInput()
     {
         this.horizontalInput = this.movementInput.x;
         this.verticalInput = this.movementInput.y;
@@ -55,6 +78,12 @@ public class PlayerInputManager : MonoBehaviour
         {
             this.moveAmount = 1f;
         }
+    }
+
+    protected virtual void HandleCameraMovementInput()
+    {
+        this.cameraHorizontalInput = this.cameraInput.x;
+        this.cameraVerticalInput = this.cameraInput.y;
     }
 
 
@@ -88,18 +117,7 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        if (this.playerControls == null)
-        {
-            this.playerControls = new PlayerControls();
-            this.playerControls.PlayerMovement.Movement.performed += i => this.movementInput = i.ReadValue<Vector2>();
-            this.playerControls.PlayerMovement.Movement.canceled += i => this.movementInput = Vector2.zero;
-        }
-        this.playerControls.Enable();
-    }
-
-    private void OnDestroy()
+   private void OnDestroy()
     {
         //if destroyed, remove the event subscription
         SceneManager.activeSceneChanged -= OnSceneChanged;

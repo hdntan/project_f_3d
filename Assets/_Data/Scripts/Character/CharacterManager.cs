@@ -11,6 +11,11 @@ public class CharacterManager : MonoBehaviour
 
     protected virtual void Update()
     {
-        
+
+    }
+    
+    protected virtual void LateUpdate()
+    {
+
     }
 }
