@@ -5,7 +5,14 @@ public class CharacterManager : NetworkBehaviour
 {
     public CharacterController characterController;
     public Animator animator;
-    protected virtual void Awake()
+
+    [Header("Flags")]
+    public bool isPerformingAction = false;
+    public bool applyRootMotion = false;
+    public bool canRotate = true;
+    public bool canMove = true;
+
+        protected virtual void Awake()
     {
         DontDestroyOnLoad(gameObject);
         this.characterController = GetComponent<CharacterController>();

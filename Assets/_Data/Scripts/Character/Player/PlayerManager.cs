@@ -5,13 +5,15 @@ public class PlayerManager : CharacterManager
 {
     public PlayerLocomotionManager playerLocomotionManager;
     public PlayerAnimatorManager playerAnimatorManager;
+
+
     protected override void Awake()
     {
         base.Awake();
-           this.playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+        this.playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         this.playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
-     
-       
+
+
     }
 
 

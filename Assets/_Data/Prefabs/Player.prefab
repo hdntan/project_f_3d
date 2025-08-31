@@ -121,6 +121,10 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   characterController: {fileID: 0}
   animator: {fileID: 0}
+  isPerformingAction: 0
+  applyRootMotion: 0
+  canRotate: 1
+  canMove: 1
   playerLocomotionManager: {fileID: 0}
   playerAnimatorManager: {fileID: 0}
 --- !u!114 &8094041885442600180
@@ -139,11 +143,12 @@ MonoBehaviour:
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
-  walkingSpeed: 2
-  runningSpeed: 5
-  rotationSpeed: 15
   moveDirection: {x: 0, y: 0, z: 0}
   targetRotationDirection: {x: 0, y: 0, z: 0}
+  walkingSpeed: 1.5
+  runningSpeed: 4.5
+  rotationSpeed: 15
+  rollDirection: {x: 0, y: 0, z: 0}
 --- !u!143 &8140615090594211078
 CharacterController:
   m_ObjectHideFlags: 0
