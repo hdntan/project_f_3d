@@ -4,7 +4,9 @@ using UnityEngine.SceneManagement;
 public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager instance;
-    protected PlayerControls playerControls;
+    public PlayerControls playerControls;
+
+    public PlayerManager player;
 
     [Header("Player Movement Input")]
     [SerializeField] private Vector2 movementInput;
@@ -78,6 +80,12 @@ public class PlayerInputManager : MonoBehaviour
         {
             this.moveAmount = 1f;
         }
+        if (this.player == null)
+            return;
+        
+        this.player.playerAnimatorManager.UpdateAnimatorMovementParameters(0,this.moveAmount);
+                
+         
     }
 
     protected virtual void HandleCameraMovementInput()

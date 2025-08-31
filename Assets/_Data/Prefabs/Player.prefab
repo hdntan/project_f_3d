@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 3efc975f93e7f4a1cacc7ba7c285ae94, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f84734060422f4b169d04e9406ccf8d5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -68,6 +72,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3efc975f93e7f4a1cacc7ba7c285ae94, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8140615090594211078}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3efc975f93e7f4a1cacc7ba7c285ae94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1976803931797305986}
   m_SourcePrefab: {fileID: 100100000, guid: 3efc975f93e7f4a1cacc7ba7c285ae94, type: 3}
 --- !u!1 &1393779255739946714 stripped
 GameObject:
@@ -86,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3064917376
+  GlobalObjectIdHash: 3224437083
   InScenePlacedSourceGlobalObjectIdHash: 3224437083
   DeferredDespawnTick: 0
   Ownership: 1
@@ -111,7 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba49f9de583f443db8775c4f9927fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  ShowTopMostFoldoutHeaderGroup: 1
+  characterController: {fileID: 0}
+  animator: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
+  playerAnimatorManager: {fileID: 0}
 --- !u!114 &8094041885442600180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +141,9 @@ MonoBehaviour:
   moveAmount: 0
   walkingSpeed: 2
   runningSpeed: 5
+  rotationSpeed: 15
   moveDirection: {x: 0, y: 0, z: 0}
+  targetRotationDirection: {x: 0, y: 0, z: 0}
 --- !u!143 &8140615090594211078
 CharacterController:
   m_ObjectHideFlags: 0
@@ -156,3 +169,15 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &-1976803931797305986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393779255739946714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705e1c6d3920b4d4d828f2b6896a88af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatorManager

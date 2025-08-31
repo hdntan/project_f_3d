@@ -1,13 +1,17 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
-    [SerializeField] protected PlayerLocomotionManager playerLocomotionManager;
+    public PlayerLocomotionManager playerLocomotionManager;
+    public PlayerAnimatorManager playerAnimatorManager;
     protected override void Awake()
     {
         base.Awake();
-        this.playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
-        PlayerCamera.instance.player = this;
+           this.playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+        this.playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
+     
+       
     }
 
 
@@ -25,6 +29,17 @@ public class PlayerManager : CharacterManager
         PlayerCamera.instance.HandleAllCameraAction();
     }
 
-  
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+
+        if (IsOwner)
+        {
+            PlayerInputManager.instance.player = this;
+            PlayerCamera.instance.player = this;    
+           
+        }
+       
+    }
 
 }

@@ -1124,6 +1124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e217a8fdb7c514571b975508489a6dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputManager
+  player: {fileID: 0}
   movementInput: {x: 0, y: 0}
   horizontalInput: 0
   verticalInput: 0
