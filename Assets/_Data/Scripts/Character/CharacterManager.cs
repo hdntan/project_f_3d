@@ -12,7 +12,10 @@ public class CharacterManager : NetworkBehaviour
     public bool canRotate = true;
     public bool canMove = true;
 
-        protected virtual void Awake()
+
+
+
+    protected virtual void Awake()
     {
         DontDestroyOnLoad(gameObject);
         this.characterController = GetComponent<CharacterController>();
@@ -28,6 +31,8 @@ public class CharacterManager : NetworkBehaviour
     {
 
     }
+
+
 
   
 }

@@ -25,6 +25,8 @@ public class PlayerInputManager : MonoBehaviour
     [Header("Player Actions Input")]
     public bool dodgeInput = false;
 
+    public bool sprintInput = false;
+
 
     private void Awake()
     {
@@ -49,7 +51,11 @@ public class PlayerInputManager : MonoBehaviour
             this.playerControls.PlayerMovement.Movement.performed += i => this.movementInput = i.ReadValue<Vector2>();
             this.playerControls.PlayerCamera.Movement.performed += i => this.cameraInput = i.ReadValue<Vector2>();
             this.playerControls.PlayerActions.Dodge.performed += i => this.dodgeInput = true;
+            this.playerControls.PlayerActions.Dodge.canceled += i => this.dodgeInput = false;
             //this.playerControls.PlayerMovement.Movement.canceled += i => this.movementInput = Vector2.zero;
+
+            this.playerControls.PlayerActions.Sprint.performed += i => this.sprintInput = true;
+            this.playerControls.PlayerActions.Sprint.canceled += i => this.sprintInput = false;
         }
         this.playerControls.Enable();
     }
@@ -66,12 +72,13 @@ public class PlayerInputManager : MonoBehaviour
     {
        this.HandleAllInputs();
     }
-    
+
     private void HandleAllInputs()
     {
         this.HandlePlayerMovementInput();
         this.HandleCameraMovementInput();
         this.HandleDodgeInput();
+        this.HandleSprintInput();
     }
 
 
@@ -92,24 +99,34 @@ public class PlayerInputManager : MonoBehaviour
         if (this.player == null)
             return;
 
-        this.player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, this.moveAmount);
+        this.player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, this.moveAmount, this.sprintInput);
 
 
     }
 
-    public virtual void HandleDodgeInput()
-    {
-        if (this.dodgeInput)
-        {
-            this.dodgeInput = false;
-        this.player.playerLocomotionManager.AttemptToPerformDodge();
-       }
-    }
+
 
     protected virtual void HandleCameraMovementInput()
     {
         this.cameraHorizontalInput = this.cameraInput.x;
         this.cameraVerticalInput = this.cameraInput.y;
+    }
+
+        public virtual void HandleDodgeInput()
+    {
+        if (this.dodgeInput)
+        {
+            //this.dodgeInput = false;
+        this.player.playerLocomotionManager.AttemptToPerformDodge();
+       }
+    }
+
+    public virtual void HandleSprintInput()
+    {
+        if (this.sprintInput)
+        {
+    this.player.playerLocomotionManager.HandleSprinting();
+      }
     }
 
 

@@ -8,11 +8,18 @@ public class CharacterAnimatorManager : MonoBehaviour
     {
         this.character = GetComponent<CharacterManager>();
     }
-    public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement)
+    public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement, bool isSprinting)
     {
         character.animator.SetFloat("Horizontal", horizontalMovement, 0.1f, Time.deltaTime);
 
         character.animator.SetFloat("Vertical", verticalMovement, 0.1f, Time.deltaTime);
+        
+        if (isSprinting)
+        {
+            character.animator.SetFloat("Vertical", 2, 0.1f, Time.deltaTime);
+        }
+
+
     }
 
     public virtual void PlayTargetActionAnimation(string targetAnim,
