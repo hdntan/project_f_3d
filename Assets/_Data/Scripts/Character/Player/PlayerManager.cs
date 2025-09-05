@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Unity.Collections;
 using UnityEngine;
 
 public class PlayerManager : CharacterManager
@@ -7,6 +8,8 @@ public class PlayerManager : CharacterManager
     public PlayerAnimatorManager playerAnimatorManager;
 
     public PlayerStatsManager playerStatsManager;
+
+   
 
 
 
@@ -26,6 +29,7 @@ public class PlayerManager : CharacterManager
     {
         PlayerInputManager.instance.player = this;
         PlayerCamera.instance.player = this;
+        WorldSaveGameManager.instance.player = this;
 
 
         this.playerStatsManager.maxStamina = this.playerStatsManager.CaculateStaminaBasedOnEnduranceLevel(this.playerStatsManager.endurance);
@@ -48,6 +52,23 @@ public class PlayerManager : CharacterManager
         base.LateUpdate();
         //handle camera movement
         PlayerCamera.instance.HandleAllCameraAction();
+    }
+
+    public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
+    {
+        currentCharacterData.CharacterName = this.characterName.ToString();
+        currentCharacterData.yPosition = this.transform.position.y;
+        currentCharacterData.xPosition = this.transform.position.x;
+        currentCharacterData.zPosition = this.transform.position.z;
+
+    }
+
+    public void LoadGameDataFromCurrentCharacterData(CharacterSaveData currentCharacterData)
+    {
+        this.characterName = currentCharacterData.CharacterName;
+        Vector3 position = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
+        this.transform.position = position;
+
     }
 
     // public override void OnNetworkSpawn()
