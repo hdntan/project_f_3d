@@ -7,7 +7,7 @@ public class CharacterManager : NetworkBehaviour
     public CharacterController characterController;
     public Animator animator;
      [Header("Player Settings")]
-    public FixedString64Bytes characterName = "CharacterName";
+    public string characterName = "CharacterName";
 
     [Header("Flags")]
     public bool isPerformingAction = false;

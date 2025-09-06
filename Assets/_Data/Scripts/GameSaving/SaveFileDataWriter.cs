@@ -60,7 +60,7 @@ public class SaveFileDataWriter
         string loadPath = Path.Combine(saveDataDirectoryPath, saveFileName);
         if (!File.Exists(loadPath))
         {
-            Debug.LogError("No save file found at: " + loadPath);
+         
             return null;
         }
 

@@ -56,7 +56,7 @@ public class PlayerManager : CharacterManager
 
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
     {
-        currentCharacterData.CharacterName = this.characterName.ToString();
+        currentCharacterData.characterName = this.characterName;
         currentCharacterData.yPosition = this.transform.position.y;
         currentCharacterData.xPosition = this.transform.position.x;
         currentCharacterData.zPosition = this.transform.position.z;
@@ -65,7 +65,7 @@ public class PlayerManager : CharacterManager
 
     public void LoadGameDataFromCurrentCharacterData(CharacterSaveData currentCharacterData)
     {
-        this.characterName = currentCharacterData.CharacterName;
+        this.characterName = currentCharacterData.characterName;
         Vector3 position = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
         this.transform.position = position;
 
