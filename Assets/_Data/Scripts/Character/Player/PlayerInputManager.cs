@@ -133,7 +133,7 @@ public class PlayerInputManager : MonoBehaviour
     private void OnSceneChanged(Scene oldScene, Scene newScene)
     {
         //if we are load into the world scene, enable out player controls
-        if (newScene.buildIndex == WorldSaveGameManager.instance.WorldSceneIndex)
+        if (newScene.buildIndex == WorldSaveGameManager.instance.worldSceneIndex)
         {
             instance.enabled = true;
         }

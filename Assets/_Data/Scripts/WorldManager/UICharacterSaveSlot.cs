@@ -144,4 +144,15 @@ public class UICharacterSaveSlot : MonoBehaviour
         }
 
     }
+
+    public void LoadGameFromCharacterSlot()
+    {
+        WorldSaveGameManager.instance.currentCharacterSlotBeingUsed = this.characterSlot;
+        WorldSaveGameManager.instance.LoadGame();
+    }
+
+    public void SelectCurrentSlot()
+    {
+        TitleScreenManager.instance.SelectCharacterSlot(this.characterSlot);
+    }
 }

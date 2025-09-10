@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : CharacterManager
 {
@@ -56,6 +57,7 @@ public class PlayerManager : CharacterManager
 
     public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
     {
+        currentCharacterData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
         currentCharacterData.characterName = this.characterName;
         currentCharacterData.yPosition = this.transform.position.y;
         currentCharacterData.xPosition = this.transform.position.x;
@@ -63,7 +65,7 @@ public class PlayerManager : CharacterManager
 
     }
 
-    public void LoadGameDataFromCurrentCharacterData(CharacterSaveData currentCharacterData)
+    public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
     {
         this.characterName = currentCharacterData.characterName;
         Vector3 position = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
