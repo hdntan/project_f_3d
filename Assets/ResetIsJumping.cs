@@ -1,23 +1,18 @@
 using UnityEngine;
 
-public class ResetActionFlags : StateMachineBehaviour
+public class ResetIsJumping : StateMachineBehaviour
 {
-    CharacterManager character;
+     CharacterManager character;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
         if (this.character == null)
         {
             this.character = animator.GetComponent<CharacterManager>();
         }
 
-        this.character.isPerformingAction = false;
-        this.character.applyRootMotion = false;
-        this.character.canRotate = true;
-        this.character.canMove = true;
+   
         this.character.isJumping = false;
-        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

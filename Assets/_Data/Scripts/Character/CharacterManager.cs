@@ -11,6 +11,12 @@ public class CharacterManager : NetworkBehaviour
 
     [Header("Flags")]
     public bool isPerformingAction = false;
+    public bool isJumping = false;
+    public bool isSprinting = false;
+
+
+    public bool isGrounded = true;
+
     public bool applyRootMotion = false;
     public bool canRotate = true;
     public bool canMove = true;
@@ -27,7 +33,7 @@ public class CharacterManager : NetworkBehaviour
 
     protected virtual void Update()
     {
-
+        this.animator.SetBool("isGrounded", this.isGrounded);
     }
 
     protected virtual void LateUpdate()

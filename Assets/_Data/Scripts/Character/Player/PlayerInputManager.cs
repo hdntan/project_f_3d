@@ -24,6 +24,8 @@ public class PlayerInputManager : MonoBehaviour
 
     [Header("Player Actions Input")]
     public bool dodgeInput = false;
+    public bool jumpInput = false;
+
 
     public bool sprintInput = false;
 
@@ -51,7 +53,11 @@ public class PlayerInputManager : MonoBehaviour
             this.playerControls.PlayerMovement.Movement.performed += i => this.movementInput = i.ReadValue<Vector2>();
             this.playerControls.PlayerCamera.Movement.performed += i => this.cameraInput = i.ReadValue<Vector2>();
             this.playerControls.PlayerActions.Dodge.performed += i => this.dodgeInput = true;
-            this.playerControls.PlayerActions.Dodge.canceled += i => this.dodgeInput = false;
+            this.playerControls.PlayerActions.Jump.performed += i => this.jumpInput = true;
+            this.playerControls.PlayerActions.Jump.canceled += i => this.jumpInput = false;
+
+
+            //this.playerControls.PlayerActions.Dodge.canceled += i => this.dodgeInput = false;
             //this.playerControls.PlayerMovement.Movement.canceled += i => this.movementInput = Vector2.zero;
 
             this.playerControls.PlayerActions.Sprint.performed += i => this.sprintInput = true;
@@ -79,6 +85,7 @@ public class PlayerInputManager : MonoBehaviour
         this.HandleCameraMovementInput();
         this.HandleDodgeInput();
         this.HandleSprintInput();
+        this.HandleJumpInput();
     }
 
 
@@ -116,17 +123,29 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (this.dodgeInput)
         {
-            //this.dodgeInput = false;
+            this.dodgeInput = false;
         this.player.playerLocomotionManager.AttemptToPerformDodge();
        }
     }
+    
+            public virtual void HandleJumpInput()
+    {
+        if (this.jumpInput)
+        {
+            Debug.Log("Jump" + this.jumpInput);
+        this.player.playerLocomotionManager.AttemptToPerformJump();
+
+            //this.jumpInput = false;
+       }
+    }
+
 
     public virtual void HandleSprintInput()
     {
         if (this.sprintInput)
         {
-    this.player.playerLocomotionManager.HandleSprinting();
-      }
+            this.player.playerLocomotionManager.HandleSprinting();
+        }
     }
 
 
