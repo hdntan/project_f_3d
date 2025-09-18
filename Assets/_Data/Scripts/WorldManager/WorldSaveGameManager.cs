@@ -92,7 +92,7 @@ public class WorldSaveGameManager : MonoBehaviour
             this.currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_01;
             this.currentCharacterData = new CharacterSaveData();
             Debug.Log("New Game Created 1");
-            StartCoroutine(this.LoadWorldScene());
+            this.NewGame();
             return;
         }
 
@@ -102,7 +102,7 @@ public class WorldSaveGameManager : MonoBehaviour
             this.currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_02;
             this.currentCharacterData = new CharacterSaveData();
             Debug.Log("New Game Created 2");
-            StartCoroutine(this.LoadWorldScene());
+            this.NewGame();
             return;
         }
 
@@ -112,7 +112,7 @@ public class WorldSaveGameManager : MonoBehaviour
             this.currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_03;
             this.currentCharacterData = new CharacterSaveData();
             Debug.Log("New Game Created 3");
-            StartCoroutine(this.LoadWorldScene());
+          this.NewGame();
             return;
         }
 
@@ -122,7 +122,7 @@ public class WorldSaveGameManager : MonoBehaviour
             this.currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_04;
             this.currentCharacterData = new CharacterSaveData();
             Debug.Log("New Game Created 4");
-            StartCoroutine(this.LoadWorldScene());
+           this.NewGame();
             return;
         }
 
@@ -132,7 +132,7 @@ public class WorldSaveGameManager : MonoBehaviour
             this.currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_05;
             this.currentCharacterData = new CharacterSaveData();
             Debug.Log("New Game Created 5");
-            StartCoroutine(this.LoadWorldScene());
+            this.NewGame();
             return;
         }
 
@@ -142,7 +142,7 @@ public class WorldSaveGameManager : MonoBehaviour
             this.currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_06;
             this.currentCharacterData = new CharacterSaveData();
             Debug.Log("New Game Created 6");
-            StartCoroutine(this.LoadWorldScene());
+         this.NewGame();
             return;
         }
 
@@ -152,7 +152,7 @@ public class WorldSaveGameManager : MonoBehaviour
             this.currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_07;
             this.currentCharacterData = new CharacterSaveData();
             Debug.Log("New Game Created 7");
-            StartCoroutine(this.LoadWorldScene());
+           this.NewGame();
             return;
         }
 
@@ -162,7 +162,7 @@ public class WorldSaveGameManager : MonoBehaviour
             this.currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_08;
             this.currentCharacterData = new CharacterSaveData();
             Debug.Log("New Game Created 8");
-            StartCoroutine(this.LoadWorldScene());
+            this.NewGame();
             return;
         }
 
@@ -172,7 +172,7 @@ public class WorldSaveGameManager : MonoBehaviour
             this.currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_09;
             this.currentCharacterData = new CharacterSaveData();
             Debug.Log("New Game Created 9");
-            StartCoroutine(this.LoadWorldScene());
+         this.NewGame();
             return;
         }
 
@@ -182,7 +182,7 @@ public class WorldSaveGameManager : MonoBehaviour
             this.currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_10;
             this.currentCharacterData = new CharacterSaveData();
             Debug.Log("New Game Created 10");
-            StartCoroutine(this.LoadWorldScene());
+           this.NewGame();
             return;
         }
 
@@ -247,6 +247,13 @@ public class WorldSaveGameManager : MonoBehaviour
         this.characterSlot_10 = this.saveGameDataWriter.LoadCharacterSaveFile();
 
 
+    }
+
+    public void NewGame()
+    {
+        //save new game data
+        this.SaveGame();
+        StartCoroutine(this.LoadWorldScene());
     }
 
     public void SaveGame()

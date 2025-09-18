@@ -130,7 +130,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         }
 
         this.player.playerStatsManager.currentStamina -= this.dodgeStaminaCost;
-        PlayerUIManger.instance.hudManager.SetNewStaminaValue(this.player.playerStatsManager.currentStamina);
+       // PlayerUIManger.instance.hudManager.SetNewStaminaValue(this.player.playerStatsManager.currentStamina);
 
     }
 
@@ -159,7 +159,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         {
             this.player.playerStatsManager.currentStamina -= this.sprintingStaminaCost * Time.deltaTime;
             Debug.Log("Stamina: " + this.player.playerStatsManager.currentStamina);
-            PlayerUIManger.instance.hudManager.SetNewStaminaValue(this.player.playerStatsManager.currentStamina);
+            //PlayerUIManger.instance.hudManager.SetNewStaminaValue(this.player.playerStatsManager.currentStamina);
         }
     }
 
@@ -179,7 +179,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         this.player.isJumping = true;
 
         this.player.playerStatsManager.currentStamina -= this.jumpingStaminaCost;
-        PlayerUIManger.instance.hudManager.SetNewStaminaValue(this.player.playerStatsManager.currentStamina);
+       // PlayerUIManger.instance.hudManager.SetNewStaminaValue(this.player.playerStatsManager.currentStamina);
 
         this.jumpDirection = PlayerCamera.instance.cameraObject.transform.forward * PlayerInputManager.instance.verticalInput;
         this.jumpDirection += PlayerCamera.instance.cameraObject.transform.right * PlayerInputManager.instance.horizontalInput;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterManager : NetworkBehaviour
 {
     public CharacterController characterController;
+    public CharacterStatusManager characterStatusManager;
     public Animator animator;
      [Header("Player Settings")]
     public string characterName = "CharacterName";
@@ -28,7 +29,13 @@ public class CharacterManager : NetworkBehaviour
     {
         DontDestroyOnLoad(gameObject);
         this.characterController = GetComponent<CharacterController>();
+        this.characterStatusManager = GetComponent<CharacterStatusManager>();
         this.animator = GetComponent<Animator>();
+    }
+
+    protected virtual void Start()
+    {
+     
     }
 
     protected virtual void Update()

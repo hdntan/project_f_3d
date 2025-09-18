@@ -12,5 +12,14 @@ public class CharacterSaveData
     [Header("World Coordinates")]
     public float xPosition;
     public float yPosition;
-    public float zPosition;   
+    public float zPosition;
+
+    [Header("Resources")]
+    public float currentStamina;
+    public float currentHealth;
+
+    [Header("Stats")]
+    public int vitality = 15;
+    public int endurance = 10;
+
 }

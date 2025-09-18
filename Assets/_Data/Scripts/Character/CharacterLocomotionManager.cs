@@ -46,16 +46,14 @@ public class CharacterLocomotionManager : MonoBehaviour
          this.character.animator.SetFloat("inAirTimer", this.inAirTimer);
          this.yVelocity.y += this.gravityForce * Time.deltaTime;
 
-         this.character.characterController.Move(yVelocity * Time.deltaTime);
+         this.character.characterController.Move(this.yVelocity * Time.deltaTime);
       }
 
       //there should always be some force applied to the y vecolity
-      if (SceneManager.GetActiveScene().buildIndex == 1)
-      {
-         Debug.Log("Scene" + " " +SceneManager.GetActiveScene().buildIndex );
-      this.character.characterController.Move(yVelocity * Time.deltaTime);
 
-      }
+      this.character.characterController.Move(this.yVelocity * Time.deltaTime);
+
+      
    }
 
    protected virtual void HandleGroundCheck()

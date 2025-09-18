@@ -1,0 +1,29 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WorldCharacterEffectManager : MonoBehaviour
+{
+    public static WorldCharacterEffectManager instant;
+    [SerializeField] List<InstantCharacterEffect> instantEffects;
+
+    private void Awake()
+    {
+        if (instant != null)
+        {
+            instant = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        this.GenerateEffectIds();
+    }
+    private void GenerateEffectIds()
+    {
+        for(int i = 0; i < this.instantEffects.Count; i++)
+        {
+            this.instantEffects[i].instantEffectId = i;
+        }
+    }
+}
