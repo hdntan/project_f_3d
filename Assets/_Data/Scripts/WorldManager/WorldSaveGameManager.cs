@@ -69,7 +69,19 @@ public class WorldSaveGameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator LoadWorldScene()
+    public IEnumerator LoadNewCharacterWorlScene()
+    {
+        //if u just want 1 world scene use this
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(this.worldSceneIndex);
+
+        // if u want to use different scenes for levels in your project use this
+        //AsyncOperation loadOperation = SceneManager.LoadSceneAsync(this.currentCharacterData.sceneIndex);
+
+        this.player.CreateNewDataFromCurrentCharacterData(ref this.currentCharacterData);
+        yield return null;
+    }
+
+        public IEnumerator LoadWorldScene()
     {
         //if u just want 1 world scene use this
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(this.worldSceneIndex);
@@ -80,6 +92,7 @@ public class WorldSaveGameManager : MonoBehaviour
         this.player.LoadGameDataFromCurrentCharacterData(ref this.currentCharacterData);
         yield return null;
     }
+
 
 
     public void AttemptToCreateNewGame()
@@ -253,7 +266,7 @@ public class WorldSaveGameManager : MonoBehaviour
     {
         //save new game data
         this.SaveGame();
-        StartCoroutine(this.LoadWorldScene());
+        StartCoroutine(this.LoadNewCharacterWorlScene());
     }
 
     public void SaveGame()

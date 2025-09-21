@@ -28,26 +28,26 @@ public class PlayerManager : CharacterManager
 
 
     }
-    
+
     protected override void Start()
     {
         base.Start();
-      
+
         this.PlayerUpdateUI();
 
     }
 
-protected virtual void PlayerUpdateUI()
-{
-    this.playerStatsManager.OnVitalityChanged += this.playerStatsManager.SetNewMaxHealthValue;
-    this.playerStatsManager.OnEnduranceChanged += this.playerStatsManager.SetNewMaxStaminaValue;
+    protected virtual void PlayerUpdateUI()
+    {
+        this.playerStatsManager.OnVitalityChanged += this.playerStatsManager.SetNewMaxHealthValue;
+        this.playerStatsManager.OnEnduranceChanged += this.playerStatsManager.SetNewMaxStaminaValue;
 
-   
-    
+
+
         this.playerStatsManager.OnCurrentStaminaChanged += PlayerUIManger.instance.hudManager.SetNewStaminaValue;
         this.playerStatsManager.OnCurrentHealthChanged += PlayerUIManger.instance.hudManager.SetNewHealthValue;
-   
-}
+
+    }
 
 
     protected override void Update()
@@ -76,6 +76,8 @@ protected virtual void PlayerUpdateUI()
 
         currentCharacterData.currentHealth = this.playerStatsManager.currentHealth;
         currentCharacterData.currentStamina = this.playerStatsManager.currentStamina;
+        Debug.Log("Current Health" + " " + currentCharacterData.currentHealth);
+        Debug.Log("Current Stamina" + " " + currentCharacterData.currentStamina);
 
         currentCharacterData.vitality = this.playerStatsManager.vitality;
         currentCharacterData.endurance = this.playerStatsManager.endurance;
@@ -97,21 +99,45 @@ protected virtual void PlayerUpdateUI()
         this.playerStatsManager.maxStamina = this.playerStatsManager.CaculateStaminaBasedOnEnduranceLevel(this.playerStatsManager.endurance);
         this.playerStatsManager.maxHealth = this.playerStatsManager.CaculateHealthBasedOnVitalityLevel(this.playerStatsManager.vitality);
 
-        this.playerStatsManager.currentHealth = currentCharacterData.currentHealth;
-        this.playerStatsManager.currentStamina = currentCharacterData.currentStamina;
+
+        PlayerUIManger.instance.hudManager.SetMaxStaminaValue(this.playerStatsManager.maxStamina);
         PlayerUIManger.instance.hudManager.SetMaxHealthValue(this.playerStatsManager.maxHealth);
-       PlayerUIManger.instance.hudManager.SetMaxStaminaValue(this.playerStatsManager.maxStamina);
+
+        this.playerStatsManager.currentStamina = currentCharacterData.currentStamina;
+        this.playerStatsManager.currentHealth = currentCharacterData.currentHealth;
+     
+
+        PlayerUIManger.instance.hudManager.SetNewStaminaValue(currentCharacterData.currentStamina);
+        PlayerUIManger.instance.hudManager.SetNewHealthValue(currentCharacterData.currentHealth);
+        Debug.Log("Current Health" + " " + currentCharacterData.currentHealth);
+        Debug.Log("Current Stamina" + " " + currentCharacterData.currentStamina);
         Debug.Log("Save Game Data To Current Character Data");
-       
-        // this.playerStatsManager.currentStamina = this.playerStatsManager.maxStamina;
-        // PlayerUIManger.instance.hudManager.SetMaxStaminaValue(this.playerStatsManager.maxStamina);
-        // PlayerUIManger.instance.hudManager.SetNewStaminaValue(this.playerStatsManager.currentStamina);
 
 
+    }
 
-        // this.playerStatsManager.currentHealth = this.playerStatsManager.maxHealth;
-        // PlayerUIManger.instance.hudManager.SetMaxHealthValue(this.playerStatsManager.maxHealth);
-        // PlayerUIManger.instance.hudManager.SetNewHealthValue(this.playerStatsManager.currentHealth);
+    public void CreateNewDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
+    {
+        this.characterName = currentCharacterData.characterName;
+        Vector3 position = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
+        this.transform.position = position;
+
+        this.playerStatsManager.vitality = currentCharacterData.vitality;
+        this.playerStatsManager.endurance = currentCharacterData.endurance;
+
+        this.playerStatsManager.maxStamina = this.playerStatsManager.CaculateStaminaBasedOnEnduranceLevel(this.playerStatsManager.endurance);
+        this.playerStatsManager.maxHealth = this.playerStatsManager.CaculateHealthBasedOnVitalityLevel(this.playerStatsManager.vitality);
+
+        PlayerUIManger.instance.hudManager.SetMaxStaminaValue(this.playerStatsManager.maxStamina);
+        PlayerUIManger.instance.hudManager.SetMaxHealthValue(this.playerStatsManager.maxHealth);
+
+        this.playerStatsManager.currentStamina = this.playerStatsManager.CaculateStaminaBasedOnEnduranceLevel(this.playerStatsManager.endurance);
+        this.playerStatsManager.currentHealth = this.playerStatsManager.CaculateHealthBasedOnVitalityLevel(this.playerStatsManager.vitality);
+
+        PlayerUIManger.instance.hudManager.SetNewStaminaValue(this.playerStatsManager.currentStamina);
+        PlayerUIManger.instance.hudManager.SetNewHealthValue(this.playerStatsManager.currentHealth );
+
+        Debug.Log("Save Game Data New Current Character Data");
 
     }
 
