@@ -5,6 +5,7 @@ public class CharacterStatusManager : MonoBehaviour
     public CharacterManager character;
 
     [Header("Player Stats")]
+    public bool isDead = false;
     [SerializeField] private int _endurance = 10;
     public int endurance
     {

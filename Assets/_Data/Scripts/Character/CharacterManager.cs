@@ -6,6 +6,8 @@ public class CharacterManager : NetworkBehaviour
 {
     public CharacterController characterController;
     public CharacterStatusManager characterStatusManager;
+
+    public CharacterEffectManager characterEffectManager;
     public Animator animator;
      [Header("Player Settings")]
     public string characterName = "CharacterName";
@@ -30,6 +32,7 @@ public class CharacterManager : NetworkBehaviour
         DontDestroyOnLoad(gameObject);
         this.characterController = GetComponent<CharacterController>();
         this.characterStatusManager = GetComponent<CharacterStatusManager>();
+        this.characterEffectManager = GetComponent<CharacterEffectManager>();
         this.animator = GetComponent<Animator>();
     }
 

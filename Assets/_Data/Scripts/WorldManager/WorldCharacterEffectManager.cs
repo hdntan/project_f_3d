@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class WorldCharacterEffectManager : MonoBehaviour
 {
-    public static WorldCharacterEffectManager instant;
+    public static WorldCharacterEffectManager instance;
+
     [SerializeField] List<InstantCharacterEffect> instantEffects;
+
+    [Header("Damage Effect")]
+    public TakeDamageEffect takeDamageEffect;
 
     private void Awake()
     {
-        if (instant != null)
+        if (instance == null)
         {
-            instant = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else

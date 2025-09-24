@@ -1085,6 +1085,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorldCharacterEffectManager
   instantEffects:
   - {fileID: 11400000, guid: e86ba148fc9924355a6a39c1fa22a7ce, type: 2}
+  - {fileID: 11400000, guid: f87613123287040c0831cd1424983854, type: 2}
+  takeDamageEffect: {fileID: 11400000, guid: f87613123287040c0831cd1424983854, type: 2}
 --- !u!1 &372152798
 GameObject:
   m_ObjectHideFlags: 0
