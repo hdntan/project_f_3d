@@ -47,8 +47,8 @@ public class CharacterStatusManager : MonoBehaviour
         }
     }
 
-   [SerializeField] private float _currentHealth = 0;
-    public float currentHealth
+   [SerializeField] private int _currentHealth = 0;
+    public int currentHealth
     {
         get => _currentHealth;
         set
@@ -69,7 +69,7 @@ public class CharacterStatusManager : MonoBehaviour
     public event Action<int> OnVitalityChanged;
 
     public event Action<float> OnCurrentStaminaChanged;
-    public event Action<float> OnCurrentHealthChanged;
+    public event Action<int> OnCurrentHealthChanged;
 
 
     protected virtual void Awake()
@@ -78,7 +78,20 @@ public class CharacterStatusManager : MonoBehaviour
     }
     protected virtual void Start()
     {
-       
+
+    }
+    
+    public void CheckHP(int healthValue)
+    {
+        if (this.currentHealth <= 0 && !this.isDead)
+        {
+            StartCoroutine(this.character.ProcessDeathEvent());
+        }
+
+        if(this.currentHealth > this.maxHealth)
+        {
+            this.currentHealth = this.maxHealth;
+        }
     }
     public virtual void RegenerateStamina()
     {

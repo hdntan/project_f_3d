@@ -1,3 +1,4 @@
+using System.Collections;
 using NUnit.Framework;
 using Unity.Collections;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : CharacterManager
 {
+    public bool respawnCharacter = false;
     public PlayerLocomotionManager playerLocomotionManager;
     public PlayerAnimatorManager playerAnimatorManager;
 
@@ -37,6 +39,17 @@ public class PlayerManager : CharacterManager
 
     }
 
+    public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
+    {
+         PlayerUIManger.instance.popUpManager.SendYouDiedPopUp();
+      
+        return base.ProcessDeathEvent(manuallySelectDeathAnimation);
+
+       
+    }
+
+    
+
     protected virtual void PlayerUpdateUI()
     {
         this.playerStatsManager.OnVitalityChanged += this.playerStatsManager.SetNewMaxHealthValue;
@@ -46,6 +59,7 @@ public class PlayerManager : CharacterManager
 
         this.playerStatsManager.OnCurrentStaminaChanged += PlayerUIManger.instance.hudManager.SetNewStaminaValue;
         this.playerStatsManager.OnCurrentHealthChanged += PlayerUIManger.instance.hudManager.SetNewHealthValue;
+        this.playerStatsManager.OnCurrentHealthChanged += this.playerStatsManager.CheckHP;
 
     }
 
@@ -56,6 +70,7 @@ public class PlayerManager : CharacterManager
         //handle player movement
         this.playerLocomotionManager.HandleAllMovement();
         this.playerStatsManager.RegenerateStamina();
+        this.DebugMenu();
     }
 
     protected override void LateUpdate()
@@ -135,10 +150,30 @@ public class PlayerManager : CharacterManager
         this.playerStatsManager.currentHealth = this.playerStatsManager.CaculateHealthBasedOnVitalityLevel(this.playerStatsManager.vitality);
 
         PlayerUIManger.instance.hudManager.SetNewStaminaValue(this.playerStatsManager.currentStamina);
-        PlayerUIManger.instance.hudManager.SetNewHealthValue(this.playerStatsManager.currentHealth );
+        PlayerUIManger.instance.hudManager.SetNewHealthValue(this.playerStatsManager.currentHealth);
 
         Debug.Log("Save Game Data New Current Character Data");
 
+    }
+
+    public override void ReviveCharacter()
+    {
+        base.ReviveCharacter();
+        this.playerStatsManager.currentHealth = this.playerStatsManager.maxHealth;
+        this.playerStatsManager.currentStamina = this.playerStatsManager.maxStamina;
+        this.playerStatsManager.isDead = false;
+        this.playerAnimatorManager.PlayTargetActionAnimation("Empty", false);
+    
+    }
+    
+    private void DebugMenu()
+    {
+        if(this.respawnCharacter)
+        {
+            this.respawnCharacter = false;
+           
+            this.ReviveCharacter();
+        }
     }
 
     // public override void OnNetworkSpawn()

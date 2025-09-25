@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class CharacterManager : NetworkBehaviour
     public CharacterStatusManager characterStatusManager;
 
     public CharacterEffectManager characterEffectManager;
+    public CharacterAnimatorManager characterAnimatorManager;
     public Animator animator;
      [Header("Player Settings")]
     public string characterName = "CharacterName";
@@ -33,6 +35,7 @@ public class CharacterManager : NetworkBehaviour
         this.characterController = GetComponent<CharacterController>();
         this.characterStatusManager = GetComponent<CharacterStatusManager>();
         this.characterEffectManager = GetComponent<CharacterEffectManager>();
+        this.characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         this.animator = GetComponent<Animator>();
     }
 
@@ -51,6 +54,23 @@ public class CharacterManager : NetworkBehaviour
 
     }
 
+
+    public virtual IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
+    {
+        this.characterStatusManager.currentHealth = 0;
+        this.characterStatusManager.isDead = true;
+        if (!manuallySelectDeathAnimation)
+        {
+            this.characterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
+        }
+
+        yield return new WaitForSeconds(5);
+    }
+
+    public virtual void ReviveCharacter()
+    {
+       
+    }
 
 
   

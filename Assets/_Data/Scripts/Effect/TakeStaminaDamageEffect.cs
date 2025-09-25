@@ -4,6 +4,8 @@ using UnityEngine;
 public class TakeStaminaDamageEffect : InstantCharacterEffect
 {
     public float staminaDamage;
+    public int damage;
+
 
     public override void ProcessEffecr(CharacterManager character)
     {
@@ -19,7 +21,7 @@ public class TakeStaminaDamageEffect : InstantCharacterEffect
             return;
         }
         character.characterStatusManager.currentStamina -= this.staminaDamage;
-        character.characterStatusManager.currentHealth -= this.staminaDamage;
+        character.characterStatusManager.currentHealth -= this.damage;
 
        // PlayerUIManger.instance.hudManager.SetNewStaminaValue(character.characterStatusManager.currentStamina);
 
