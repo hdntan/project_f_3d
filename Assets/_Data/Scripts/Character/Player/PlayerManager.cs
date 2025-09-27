@@ -11,6 +11,7 @@ public class PlayerManager : CharacterManager
     public PlayerAnimatorManager playerAnimatorManager;
 
     public PlayerStatsManager playerStatsManager;
+    public PlayerInventoryManager playerInventoryManager;
 
 
 
@@ -23,6 +24,7 @@ public class PlayerManager : CharacterManager
         this.playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         this.playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         this.playerStatsManager = GetComponent<PlayerStatsManager>();
+        this.playerInventoryManager = GetComponent<PlayerInventoryManager>();
         PlayerInputManager.instance.player = this;
         PlayerCamera.instance.player = this;
         WorldSaveGameManager.instance.player = this;
