@@ -8,9 +8,9 @@ public class TakeDamageEffect : InstantCharacterEffect
 
     [Header("Damage")]
     public float physicalDamage = 0f;
-    public float magicalDamage = 0f;
+    public float magicDamage = 0f;
     public float fireDamage = 0f;
-    public float lightDamage = 0f;
+    public float lightningDamage = 0f;
     public float holyDamage = 0f;
     [Header("Final Damage")]
     public int finalDamageDealt = 0;
@@ -47,7 +47,7 @@ public class TakeDamageEffect : InstantCharacterEffect
 
         }
 
-        this.finalDamageDealt = Mathf.RoundToInt(physicalDamage + magicalDamage + fireDamage + lightDamage + holyDamage);
+        this.finalDamageDealt = Mathf.RoundToInt(physicalDamage + magicDamage + fireDamage + lightningDamage + holyDamage);
         if (this.finalDamageDealt <= 0)
         {
             this.finalDamageDealt = 1;

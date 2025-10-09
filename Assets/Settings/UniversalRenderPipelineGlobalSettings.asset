@@ -61,6 +61,7 @@ MonoBehaviour:
       - rid: 6785804784536125445
       - rid: 6785804784536125446
       - rid: 6785804784536125447
+      - rid: 3879596069168611328
     m_RuntimeSettings:
       m_List: []
   m_AssetVersion: 8
@@ -93,6 +94,10 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 3879596069168611328
+      type: {class: RenderingDebuggerRuntimeResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
+      data:
+        m_version: 0
     - rid: 6785804784536125440
       type: {class: PostProcessData/ShaderResources, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:

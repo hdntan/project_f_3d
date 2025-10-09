@@ -2667,6 +2667,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671033374}
   m_CullTransparentMesh: 1
+--- !u!1 &761258792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 761258794}
+  - component: {fileID: 761258793}
+  m_Layer: 0
+  m_Name: WorldItemsDatabase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &761258793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761258792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bc85b63d6a543c486112d0d429324f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldItemsDatabase
+  unarmedWeapon: {fileID: 11400000, guid: 8797e1fa69e8a420482e7fbd22a22996, type: 2}
+  weaponItems:
+  - {fileID: 11400000, guid: 8797e1fa69e8a420482e7fbd22a22996, type: 2}
+  - {fileID: 11400000, guid: 6810613b47fae4495b2de6acfb0ca601, type: 2}
+  - {fileID: 11400000, guid: 7720d31d72064453e9399367a8a0fca7, type: 2}
+--- !u!4 &761258794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761258792}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800405107
 GameObject:
   m_ObjectHideFlags: 0
@@ -7385,3 +7434,4 @@ SceneRoots:
   - {fileID: 651049802}
   - {fileID: 535510130}
   - {fileID: 371218433}
+  - {fileID: 761258794}

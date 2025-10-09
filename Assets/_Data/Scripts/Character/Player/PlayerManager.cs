@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : CharacterManager
 {
     public bool respawnCharacter = false;
+    public bool switchRightWeapon = false;
     public PlayerLocomotionManager playerLocomotionManager;
     public PlayerAnimatorManager playerAnimatorManager;
 
     public PlayerStatsManager playerStatsManager;
     public PlayerInventoryManager playerInventoryManager;
+    public PlayerEquipmentManager playerEquipmentManager;
 
 
 
@@ -25,6 +27,7 @@ public class PlayerManager : CharacterManager
         this.playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         this.playerStatsManager = GetComponent<PlayerStatsManager>();
         this.playerInventoryManager = GetComponent<PlayerInventoryManager>();
+        this.playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         PlayerInputManager.instance.player = this;
         PlayerCamera.instance.player = this;
         WorldSaveGameManager.instance.player = this;
@@ -170,11 +173,16 @@ public class PlayerManager : CharacterManager
     
     private void DebugMenu()
     {
-        if(this.respawnCharacter)
+        if (this.respawnCharacter)
         {
             this.respawnCharacter = false;
-           
+
             this.ReviveCharacter();
+        }
+        if(this.switchRightWeapon)
+        {
+            this.switchRightWeapon = false;
+            this.playerEquipmentManager.SwitchRightWeapon();
         }
     }
 

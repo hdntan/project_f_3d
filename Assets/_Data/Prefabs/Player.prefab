@@ -447,10 +447,12 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   respawnCharacter: 0
+  switchRightWeapon: 0
   playerLocomotionManager: {fileID: 0}
   playerAnimatorManager: {fileID: 0}
   playerStatsManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
+  playerEquipmentManager: {fileID: 0}
 --- !u!114 &8094041885442600180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,6 +694,8 @@ MonoBehaviour:
   player: {fileID: 0}
   rightHandSlot: {fileID: 0}
   leftHandSlot: {fileID: 0}
+  rightWeaponManager: {fileID: 0}
+  leftWeaponManager: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
   leftHandWeaponModel: {fileID: 0}
 --- !u!114 &3316580876944694820
@@ -706,8 +710,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a09ab54a5a54692a03da515fb133c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventoryManager
-  currentRightHandWeapon: {fileID: 11400000, guid: 7720d31d72064453e9399367a8a0fca7, type: 2}
-  currentLeftHandWeapon: {fileID: 11400000, guid: 7720d31d72064453e9399367a8a0fca7, type: 2}
+  currentRightHandWeapon: {fileID: 11400000, guid: 8797e1fa69e8a420482e7fbd22a22996, type: 2}
+  currentLeftHandWeapon: {fileID: 11400000, guid: 8797e1fa69e8a420482e7fbd22a22996, type: 2}
+  weaponsInRightHandSlots:
+  - {fileID: 11400000, guid: 8797e1fa69e8a420482e7fbd22a22996, type: 2}
+  - {fileID: 11400000, guid: 6810613b47fae4495b2de6acfb0ca601, type: 2}
+  - {fileID: 11400000, guid: 7720d31d72064453e9399367a8a0fca7, type: 2}
+  rightHandWeaponIndex: 0
+  weaponsInLeftHandSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  leftHandWeaponIndex: 0
 --- !u!4 &3165714800725745770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3780837713738550241, guid: 3efc975f93e7f4a1cacc7ba7c285ae94, type: 3}
