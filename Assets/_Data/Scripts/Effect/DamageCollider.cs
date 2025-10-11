@@ -31,10 +31,12 @@ public class DamageCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        CharacterManager targetDamage = other.GetComponent<CharacterManager>();
+        Debug.Log("Damage Collider Trigger Enter" + other.name);
+        CharacterManager targetDamage = other.GetComponentInParent<CharacterManager>();
         if (targetDamage != null)
         {
             this.contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            Debug.Log("We hit " + targetDamage.characterName + " at " + this.contactPoint);
             this.DamageTarget(targetDamage);
         }
     }

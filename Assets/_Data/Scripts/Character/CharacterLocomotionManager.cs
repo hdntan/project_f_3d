@@ -63,7 +63,7 @@ public class CharacterLocomotionManager : MonoBehaviour
    }
    protected virtual void OnDrawGizmosSelected()
    {
-      Gizmos.DrawSphere(this.character.transform.position, this.groundCheckSphereRadius);
+    //  Gizmos.DrawSphere(this.character.transform.position, this.groundCheckSphereRadius);
    }
 }
 
